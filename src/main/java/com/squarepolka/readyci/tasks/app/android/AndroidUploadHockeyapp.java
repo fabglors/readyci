@@ -23,11 +23,11 @@ public class AndroidUploadHockeyapp extends Task {
     @Override
     public void performTask(BuildEnvironment buildEnvironment) {
       
-        String scheme = buildEnvironment.getProperty(AndroidSignApp.BUILD_PROP_SCHEME);
+        String configuration = buildEnvironment.getProperty(AndroidCreateApkFile.BUILD_PROP_CONFIGURATION);
         String hockappToken = buildEnvironment.getProperty(BUILD_PROP_HOCKEYAPP_TOKEN);
         String releaseTags = buildEnvironment.getProperty(BUILD_PROP_HOCKEYAPP_RELEASE_TAGS, "");
         String releaseNotes = buildEnvironment.getProperty(BUILD_PROP_HOCKEYAPP_RELEASE_NOTES, "");
-        String appBinaryPath = String.format("%s/app/build/outputs/apk/%s/app-%s.apk", buildEnvironment.projectPath, scheme.toLowerCase(), scheme.toLowerCase());
+        String appBinaryPath = String.format("%s/app/build/outputs/apk/%s/app-%s.apk", buildEnvironment.projectPath, configuration.toLowerCase(), configuration.toLowerCase());
 
         // Upload to HockeyApp
         executeCommand(new String[] {"/usr/bin/curl",

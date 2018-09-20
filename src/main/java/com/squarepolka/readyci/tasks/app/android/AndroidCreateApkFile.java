@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class AndroidCreateApkFile extends Task {
 
     public static final String TASK_CREATE_APK_FILE = "android_create_apk_file";
-    public static final String BUILD_PROP_SCHEME = "scheme";
+    public static final String BUILD_PROP_CONFIGURATION = "configuration";
 
 
     @Override
@@ -20,8 +20,8 @@ public class AndroidCreateApkFile extends Task {
 
     @Override
     public void performTask(BuildEnvironment buildEnvironment) throws Exception {
-        String scheme = buildEnvironment.getProperty(BUILD_PROP_SCHEME);
-        String arg = String.format("assemble%s", scheme);
+        String configuration = buildEnvironment.getProperty(BUILD_PROP_CONFIGURATION);
+        String arg = String.format("assemble%s", configuration);
         executeCommand(new String[] {
                 "./gradlew",
                 arg

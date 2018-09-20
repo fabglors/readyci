@@ -14,7 +14,7 @@ public class AndroidSignApp extends Task {
     public static final String BUILD_PROP_JAVA_KEYSTORE_PATH = "javaKeystorePath";
     public static final String BUILD_PROP_STOREPASS = "storepass";
     public static final String BUILD_PROP_KEYSTORE_ALIAS = "keystoreAlias";
-    public static final String BUILD_PROP_SCHEME = "scheme";
+    public static final String BUILD_PROP_CONFIGURATION = "configuration";
 
 
     //public static final String BUILD_PROP_TSA_URL = "tsaUrl";
@@ -28,11 +28,11 @@ public class AndroidSignApp extends Task {
     @Override
     public void performTask(BuildEnvironment buildEnvironment) throws Exception {
         String keystoreAlias = buildEnvironment.getProperty(BUILD_PROP_KEYSTORE_ALIAS);
-        String scheme = buildEnvironment.getProperty(BUILD_PROP_SCHEME);
+        String configuration = buildEnvironment.getProperty(BUILD_PROP_CONFIGURATION);
         String keystorePath = buildEnvironment.getProperty(BUILD_PROP_JAVA_KEYSTORE_PATH);
         String storePass = buildEnvironment.getProperty(BUILD_PROP_STOREPASS);
-        String unsignedApkPath = String.format("%s/app/build/outputs/apk/%s/app-%s-unsigned.apk", buildEnvironment.projectPath, scheme.toLowerCase(), scheme.toLowerCase());
-        String signedApkPath = String.format("%s/app/build/outputs/apk/%s/app-%s.apk", buildEnvironment.projectPath, scheme.toLowerCase(), scheme.toLowerCase());
+        String unsignedApkPath = String.format("%s/app/build/outputs/apk/%s/app-%s-unsigned.apk", buildEnvironment.projectPath, configuration.toLowerCase(), configuration.toLowerCase());
+        String signedApkPath = String.format("%s/app/build/outputs/apk/%s/app-%s.apk", buildEnvironment.projectPath, configuration.toLowerCase(), configuration.toLowerCase());
 
         executeCommand(new String[] {"jarsigner",
                 "-verbose",
